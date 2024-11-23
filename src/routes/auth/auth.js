@@ -7,17 +7,17 @@ import {
 } from '../../controllers/auth.js';
 import { validateBody } from '../../middlewares/validateBody.js';
 import { ctrlWrapper } from '../../utils/ctrlWrapper.js';
-import { createUserSchema } from '../../validation/auth.js';
+import {signinSchema, signupSchema} from "../../schemas/auth.js";
 
 const router = new Router();
 
 router.post(
   '/signup',
-  validateBody(createUserSchema),
+  validateBody(signupSchema),
   ctrlWrapper(signUpController),
 );
 
-router.post('/signin', validateBody(createUserSchema), signInController);
+router.post('/signin', validateBody(signinSchema), signInController);
 
 router.post('logout', ctrlWrapper(logoutController));
 

@@ -5,18 +5,18 @@ import { upload } from '../middlewares/multers.js';
 import { currenUserController } from '../controllers/auth.js';
 import { ctrlWrapper } from '../utils/ctrlWrapper.js';
 import { authenticate } from '../middlewares/authenticate.js';
-import { updateUserSchema } from '../validation/user.js';
+import {userSchema} from "../schemas/users.js";
 const router = new Router();
+import {validateBody} from "../middlewares/validateBody.js";
 
-router.use('/auth', authRouter);
+router.use('/auth.js', authRouter);
 router.use(authenticate);
 router.get('/current', ctrlWrapper(currenUserController));
 router.patch(
   '/',
   upload.single('avatar'),
-  validateBody(updateUserSchema),
+  validateBody(userSchema),
   ctrlWrapper(editUserController),
 );
-router.patch('/editUser', editUserController);
 
 export default router;
