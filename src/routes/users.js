@@ -9,7 +9,7 @@ import {userSchema} from "../schemas/users.js";
 const router = new Router();
 import {validateBody} from "../middlewares/validateBody.js";
 
-router.use('/auth.js', authRouter);
+router.use('/auth', authRouter);
 router.use(authenticate);
 router.get('/current', ctrlWrapper(currenUserController));
 router.patch(

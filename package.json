@@ -34,6 +34,7 @@
     "multer": "^1.4.5-lts.1",
     "nodemailer": "^6.9.16",
     "pino-http": "^10.3.0",
+    "randombytes": "^2.1.0",
     "swagger-ui-express": "^5.0.1"
   }
 }

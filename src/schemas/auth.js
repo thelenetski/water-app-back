@@ -2,14 +2,27 @@ import Joi from 'joi';
 
 // Схема для реєстрації користувача
 const signupSchema = Joi.object({
-    name: Joi.string().min(3).max(30).required(), // Додано мінімальну та максимальну довжину для name
-    email: Joi.string().email().required(), // Перевірка, чи є email
-    password: Joi.string().min(6).required(), // Мінімальна довжина паролю
-    repeatPassword: Joi.any().valid(Joi.ref('password')).required().options({
-        messages: {
-            any: 'Passwords must match',
-        }
-    })
+    email: Joi.string()
+        .email()
+        .required()
+        .messages({
+            'string.empty': 'Email is required',
+            'string.email': 'Please provide a valid email address',
+        }),
+    password: Joi.string()
+        .min(6)
+        .required()
+        .messages({
+            'string.empty': 'Password is required',
+            'string.min': 'Password must be at least 6 characters long',
+        }),
+    repeatPassword: Joi.any()
+        .valid(Joi.ref('password'))
+        .required()
+        .messages({
+            'any.only': 'Passwords must match',
+            'any.required': 'Please confirm your password',
+        }),
 });
 
 // Схема для логіну користувача
