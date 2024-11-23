@@ -5,7 +5,6 @@ const waterSchema = Joi.object({
   userId: Joi.string().required(), // ID користувача
   date: Joi.date().iso().required(), // Формат ISO, наприклад: YYYY-MM-DDThh:mm:ss
   curDailyNorm: Joi.number().positive().default(0), // Поточна кількість випитої води
-  createdAt: Joi.date().iso().default(() => new Date(), 'Дата створення'),
 });
 
 export { waterSchema };
