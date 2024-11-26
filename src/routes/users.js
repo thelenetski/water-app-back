@@ -2,7 +2,7 @@ import { Router } from 'express';
 import authRouter from './auth/auth.js';
 import { editUserController } from '../controllers/users.js';
 import { upload } from '../middlewares/multers.js';
-import { currenUserController } from '../controllers/auth.js';
+import { currentUserController } from '../controllers/users.js';
 import { ctrlWrapper } from '../utils/ctrlWrapper.js';
 import { authenticate } from '../middlewares/authenticate.js';
 import {userSchema} from "../schemas/users.js";
@@ -11,10 +11,10 @@ import {validateBody} from "../middlewares/validateBody.js";
 
 router.use('/auth', authRouter);
 router.use(authenticate);
-router.get('/current', ctrlWrapper(currenUserController));
+router.get('/current', ctrlWrapper(currentUserController));
 router.patch(
   '/',
-  upload.single('avatar'),
+  upload.single('avatarUrl'),
   validateBody(userSchema),
   ctrlWrapper(editUserController),
 );
