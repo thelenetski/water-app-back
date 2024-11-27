@@ -1,0 +1,21 @@
+type: object
+required:
+  - status
+  - message
+  - data
+properties:
+  status:
+    type: integer
+    example: 401
+  message:
+    description: Message about request
+    type: string
+    example: Unauthorized
+  data:
+    type: object
+    required:
+      - message
+    properties:
+      message:
+        type: string
+        example: 'Unauthorized'

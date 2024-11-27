@@ -6,6 +6,8 @@ import usersRoutes from "./routes/users.js";
 import waterRoutes from "./routes/water.js";
 import {notFoundHandler} from "./middlewares/notFoundHandler.js";
 import {errorHander} from "./middlewares/errorHandler.js";
+import swaggerDocument from '../docs/swagger.json' assert { type: 'json' };
+import swaggerUi from 'swagger-ui-express'
 
 const setupServer = () => {
     const PORT = process.env.PORT || 3000;
@@ -26,6 +28,9 @@ const setupServer = () => {
     }));
 
     app.use(cookieParser());
+
+     app.use('/api-docs', swaggerUi.serve);
+    app.get('/api-docs', swaggerUi.setup(swaggerDocument));
 
     app.use('/api/users', usersRoutes);
     app.use('/api/water', waterRoutes);

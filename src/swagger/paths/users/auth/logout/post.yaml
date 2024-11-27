@@ -1,0 +1,28 @@
+tags:
+  - Auth
+summary: Logout
+operationId: Logout
+description: Logout
+security:
+      - bearerAuth: [ ]
+responses:
+  "204":
+    description: 'Successfully created user'
+    headers:
+      Set-Cookie:
+        description: 'Deletes session ID and refresh token cookies'
+        schema:
+          type: string
+          example: |
+            sessionId=; HttpOnly; Path=/; Secure; SameSite=Strict; Expires=Thu, 01 Jan 1970 00:00:00 GMT
+            refreshToken=; HttpOnly; Path=/; Secure; SameSite=Strict; Expires=Thu, 01 Jan 1970 00:00:00 GMT
+    content:
+      application/json:
+        schema:
+          type: object
+  '404':
+    description: 'Bad request'
+    content:
+      application/json:
+        schema:
+          $ref: "../../../../components/404.yaml"

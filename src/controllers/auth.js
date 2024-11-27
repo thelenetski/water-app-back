@@ -5,7 +5,7 @@ import createHttpError from "http-errors";
 export const signUpController = ctrlWrapper(async (req, res) => {
     const user = await signup(req.body);
 
-    if(!user) throw createHttpError(400, "Something went wrong");
+    if(!user) throw createHttpError(400, "Bad request");
 
     res.status(201).send({
         status: 201,
@@ -36,11 +36,7 @@ export const signInController = ctrlWrapper(async (req, res) => {
 });
 
 export const logoutController = ctrlWrapper(async (req, res) => {
-    if (!req.cookies.sessionId) {
-        throw createHttpError(401, "Bad request");
-    }
-
-    await logout(req.cookie);
+    await logout(req.user);
 
     res.clearCookie('refreshToken');
     res.clearCookie('sessionId');
@@ -49,11 +45,7 @@ export const logoutController = ctrlWrapper(async (req, res) => {
 });
 
 export const refreshUserController = ctrlWrapper(async (req, res) => {
-    if (!req.cookies.sessionId) {
-        throw createHttpError(401, "Bad request");
-    }
-
-    const session = await refreshUser(req.cookies);
+    const session = await refreshUser(req.user);
 
     res.cookie("sessionId", session._id, {
         httpOnly: true,

@@ -1,0 +1,60 @@
+tags:
+  - Users
+summary: edit User
+operationId: edit User
+description: edit User
+security:
+  - bearerAuth: [ ]
+requestBody:
+  content:
+    multipart/form-data:
+      schema:
+        type: object
+        properties:
+          name:
+            description: "User name"
+            type: string
+            example: John Doe
+          gender:
+            description: "User gender"
+            type: string,
+            enum: ['male', 'female']
+          weight:
+            description: "User weight"
+            type: number
+            example: 72
+          sportParticipation:
+            description: "User sport participation"
+            type: number
+            example: 0
+          dailyNorm:
+            description: "Daily norm of water"
+            type: number
+            example: 1500
+          avatarUrl:
+            description: "User avatar"
+            type: string
+            format: binary
+responses:
+  '200':
+    description: 'User'
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 200
+            data:
+              $ref: ../../components/schemas/user.yaml
+  '401':
+    description: 'Unauthorized'
+    content:
+      application/json:
+        schema:
+          $ref: "../../components/401.yaml"

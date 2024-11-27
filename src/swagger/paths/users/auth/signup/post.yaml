@@ -1,0 +1,56 @@
+tags:
+  - Auth
+summary: Sign up
+operationId: Sign up
+description: Sign up
+requestBody:
+  content:
+    application/json:
+      schema:
+        type: object
+        required:
+          - email
+          - password
+          - repeatPassword
+        properties:
+          email:
+            description: "User email"
+            type: string
+            example: andriy7@example.com
+          password:
+            description: "User password"
+            type: string
+            example: qweqwe123
+          repeatPassword:
+            description: "Repeated password which should match with first one"
+            type: string
+            example: qweqwe123
+responses:
+  '200':
+    description: 'Successfully created user'
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: 'Successfully created Users'
+  '400':
+    description: 'Bad request'
+    content:
+      application/json:
+        schema:
+          $ref: "../../../../components/400.yaml"
+  '409':
+    description: 'Conflict'
+    content:
+      application/json:
+        schema:
+          $ref: "../../../../components/409.yaml"

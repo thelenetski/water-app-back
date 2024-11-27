@@ -1,0 +1,68 @@
+tags:
+  - Auth
+summary: Sign in
+operationId: Sign in
+description: Sign in
+requestBody:
+  content:
+    application/json:
+      schema:
+        type: object
+        required:
+          - email
+          - password
+        properties:
+          email:
+            description: "User email"
+            type: string
+            example: andriy7@example.com
+          password:
+            description: "User password"
+            type: string
+            example: qweqwe123
+responses:
+  '200':
+    description: 'Successfully logged in'
+    headers:
+      Set-Cookie:
+        description: 'Session ID and Refresh Token cookies'
+        schema:
+          type: string
+          example: |
+            sessionId=abc123xyz456; HttpOnly; Path=/; Secure; SameSite=Strict
+            refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjM0NTY3ODkwMTIzNDU2NzgyMDM0NTY3ODkwMjM0NTY3ODkw; HttpOnly; Path=/; Secure; SameSite=Strict
+      content:
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: 'Successfully logged in'
+            data:
+              type: object
+              properties:
+                accessToken:
+                  type: string
+                  description: "accessToken"
+                  example: NauOmIu9Th39x6Uu5TsfEkZXl4+gdHeMg9CjHAh5
+  '404':
+    description: 'Not found'
+    content:
+      application/json:
+        schema:
+          $ref: "../../../../components/404.yaml"
+  '400':
+    description: 'Bad request'
+    content:
+      application/json:
+        schema:
+          $ref: "../../../../components/400.yaml"

@@ -36,13 +36,13 @@ export const signin = async (payload) => {
 };
 
 export const logout = async (payload) => {
-    const {sessionId} = payload;
+    const {_id} = payload;
 
-    const session = await Sessions.findOne({_id: sessionId});
+    const session = await Sessions.findOne({userId: _id});
 
     if (!session) throw createHttpError(404, 'User not found');
 
-    await Sessions.deleteOne({_id: sessionId});
+    await Sessions.deleteOne({userId: _id});
 };
 
 export const getCurrentUser = async (payload) => {
@@ -56,15 +56,15 @@ export const getCurrentUser = async (payload) => {
 }
 
 export const refreshUser = async (payload) => {
-    const {sessionId} = payload;
+    const {_id} = payload;
 
-    const session = await Sessions.findById(sessionId);
+    const session = await Sessions.findOne({userId:_id});
 
     if (!session) throw createHttpError(404, 'User not found');
 
     if (new Date() > session.accessTokenValidUntil) throw new createHttpError(401, 'Session expired');
 
-    await Sessions.deleteOne({_id: sessionId});
+    await Sessions.deleteOne({_id: session._id});
 
     const newSession = createSession();
 

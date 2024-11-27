@@ -1,0 +1,43 @@
+type: object
+required:
+  - _id
+  - name
+  - gender
+  - email
+  - weight
+  - SportParticipation
+  - dailyNorm
+  - avatarUrl
+  - createdAt
+  - updatedAt
+properties:
+  _id:
+    type: string
+    example: 674245a0c5604835d8faa4fb
+  name:
+    type: string
+    example: John Doe
+  gender:
+    type: string
+    example: female
+  email:
+    type: string
+    example: qwe@gmail.com
+  weight:
+    type: number
+    example: 23
+  SportParticipation:
+    type: number
+    example: 0
+  dailyNorm:
+    type: number
+    example: 1500
+  avatarUrl:
+    type: string
+    example: https://res.cloudinary.com/dwwbuktym/image/upload/v1732649373/b8zveo5r…
+  createdAt:
+    type: string
+    example: 2024-11-26T16:17:52.819+00:00
+  updatedAt:
+    type: string
+    example: 2024-11-26T16:17:52.819+00:00
