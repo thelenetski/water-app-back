@@ -14,7 +14,7 @@ tags:
     description: Auth operations.
 servers:
   - url: http://localhost:3000
-  - url: https://nodejs-hw-mongodb-u29k.onrender.com
+  - url: https://water-app-back-1n3p.onrender.com
 paths:
   /api/users/auth/signup:
     post:
