@@ -13,7 +13,7 @@ tags:
   - name: Auth
     description: Auth operations.
 servers:
-  - url: http://localhost:3000
+  # - url: http://localhost:3000
   - url: https://water-app-back-1n3p.onrender.com
 paths:
   /api/users/auth/signup:
