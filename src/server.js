@@ -29,7 +29,6 @@ const setupServer = () => {
 
     app.use(cookieParser());
 
-    console.log(swaggerDocument);
     app.use('/api-docs', swaggerUi.serve);
     app.get('/api-docs', swaggerUi.setup(JSON.parse(swaggerDocument)));
 
