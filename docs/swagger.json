@@ -27,22 +27,21 @@
   "paths": {
     "/api/users/auth/signup": {
       "post": {
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "summary": "Sign up",
-        "operationId": "Sign up",
+        "operationId": "SignUp",
         "description": "Sign up",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "email",
-                  "password",
-                  "repeatPassword"
-                ],
+                "required": ["email", "password", "repeatPassword"],
                 "properties": {
                   "email": {
                     "description": "User email",
@@ -71,10 +70,7 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "required": [
-                    "status",
-                    "message"
-                  ],
+                  "required": ["status", "message"],
                   "properties": {
                     "status": {
                       "type": "integer",
@@ -114,21 +110,21 @@
     },
     "/api/users/auth/signin": {
       "post": {
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "summary": "Sign in",
-        "operationId": "Sign in",
+        "operationId": "SignIn",
         "description": "Sign in",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "email",
-                  "password"
-                ],
+                "required": ["email", "password"],
                 "properties": {
                   "email": {
                     "description": "User email",
@@ -155,18 +151,13 @@
                   "type": "string",
                   "example": "sessionId=abc123xyz456; HttpOnly; Path=/; Secure; SameSite=Strict\nrefreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjM0NTY3ODkwMTIzNDU2NzgyMDM0NTY3ODkwMjM0NTY3ODkw; HttpOnly; Path=/; Secure; SameSite=Strict\n"
                 }
-              },
-              "content": null
+              }
             },
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "required": [
-                    "status",
-                    "message",
-                    "data"
-                  ],
+                  "required": ["status", "message", "data"],
                   "properties": {
                     "status": {
                       "type": "integer",
@@ -216,9 +207,7 @@
     },
     "/api/users/auth/refresh": {
       "post": {
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "summary": "Refresh token",
         "operationId": "RefreshToken",
         "description": "Refresh the session token and refresh token.",
@@ -243,11 +232,7 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "required": [
-                    "status",
-                    "message",
-                    "data"
-                  ],
+                  "required": ["status", "message", "data"],
                   "properties": {
                     "status": {
                       "type": "integer",
@@ -292,23 +277,12 @@
               }
             }
           }
-        },
-        "components": {
-          "securitySchemes": {
-            "bearerAuth": {
-              "type": "http",
-              "scheme": "bearer",
-              "description": "Use the sessionId and refreshToken cookies for authentication. These cookies should be included in the request.\n"
-            }
-          }
         }
       }
     },
     "/api/users/auth/logout": {
       "post": {
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "summary": "Logout",
         "operationId": "Logout",
         "description": "Logout",
@@ -352,11 +326,9 @@
     },
     "/api/users/current": {
       "get": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "get current user",
-        "operationId": "get current user",
+        "operationId": "getCurrentUser",
         "description": "get current user",
         "security": [
           {
@@ -370,11 +342,7 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "required": [
-                    "status",
-                    "message",
-                    "data"
-                  ],
+                  "required": ["status", "message", "data"],
                   "properties": {
                     "status": {
                       "type": "integer",
@@ -413,11 +381,9 @@
     },
     "/api/users": {
       "patch": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "edit User",
-        "operationId": "edit User",
+        "operationId": "editUser",
         "description": "edit User",
         "security": [
           {
@@ -437,11 +403,8 @@
                   },
                   "gender": {
                     "description": "User gender",
-                    "type": "string,",
-                    "enum": [
-                      "male",
-                      "female"
-                    ]
+                    "type": "string",
+                    "enum": ["male", "female"]
                   },
                   "weight": {
                     "description": "User weight",
@@ -475,11 +438,7 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "required": [
-                    "status",
-                    "message",
-                    "data"
-                  ],
+                  "required": ["status", "message", "data"],
                   "properties": {
                     "status": {
                       "type": "integer",
@@ -517,11 +476,7 @@
     "schemas": {
       "400": {
         "type": "object",
-        "required": [
-          "status",
-          "message",
-          "data"
-        ],
+        "required": ["status", "message", "data"],
         "properties": {
           "status": {
             "type": "integer",
@@ -534,9 +489,7 @@
           },
           "data": {
             "type": "object",
-            "required": [
-              "message"
-            ],
+            "required": ["message"],
             "properties": {
               "message": {
                 "type": "string",
@@ -548,11 +501,7 @@
       },
       "401": {
         "type": "object",
-        "required": [
-          "status",
-          "message",
-          "data"
-        ],
+        "required": ["status", "message", "data"],
         "properties": {
           "status": {
             "type": "integer",
@@ -565,9 +514,7 @@
           },
           "data": {
             "type": "object",
-            "required": [
-              "message"
-            ],
+            "required": ["message"],
             "properties": {
               "message": {
                 "type": "string",
@@ -579,11 +526,7 @@
       },
       "404": {
         "type": "object",
-        "required": [
-          "status",
-          "message",
-          "data"
-        ],
+        "required": ["status", "message", "data"],
         "properties": {
           "status": {
             "type": "integer",
@@ -596,9 +539,7 @@
           },
           "data": {
             "type": "object",
-            "required": [
-              "message"
-            ],
+            "required": ["message"],
             "properties": {
               "message": {
                 "type": "string",
@@ -610,11 +551,7 @@
       },
       "409": {
         "type": "object",
-        "required": [
-          "status",
-          "message",
-          "data"
-        ],
+        "required": ["status", "message", "data"],
         "properties": {
           "status": {
             "type": "integer",
@@ -627,9 +564,7 @@
           },
           "data": {
             "type": "object",
-            "required": [
-              "message"
-            ],
+            "required": ["message"],
             "properties": {
               "message": {
                 "type": "string",

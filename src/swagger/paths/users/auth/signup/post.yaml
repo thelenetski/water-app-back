@@ -1,8 +1,10 @@
 tags:
   - Auth
 summary: Sign up
-operationId: Sign up
+operationId: SignUp
 description: Sign up
+security:
+  - bearerAuth: []
 requestBody:
   content:
     application/json:
@@ -26,8 +28,8 @@ requestBody:
             type: string
             example: qweqwe123
 responses:
-  '200':
-    description: 'Successfully created user'
+  "200":
+    description: "Successfully created user"
     content:
       application/json:
         schema:
@@ -41,15 +43,15 @@ responses:
               example: 200
             message:
               type: string
-              example: 'Successfully created Users'
-  '400':
-    description: 'Bad request'
+              example: "Successfully created Users"
+  "400":
+    description: "Bad request"
     content:
       application/json:
         schema:
           $ref: "../../../../components/400.yaml"
-  '409':
-    description: 'Conflict'
+  "409":
+    description: "Conflict"
     content:
       application/json:
         schema:
