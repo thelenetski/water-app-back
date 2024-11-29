@@ -1,15 +1,16 @@
-import crypto from 'node:crypto';
+import crypto from "node:crypto";
+import { ONE_MONTH, SIXTY_MINUTES } from "../constants";
 
 export const createSession = () => {
-    const accessToken = crypto.randomBytes(30).toString('base64');
-    const refreshToken = crypto.randomBytes(30).toString('base64');
-    const accessTokenValidUntil = new Date(Date.now() + 60 * 60 * 1000);
-    const refreshTokenValidUntil = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000);
+  const accessToken = crypto.randomBytes(30).toString("base64");
+  const refreshToken = crypto.randomBytes(30).toString("base64");
+  const accessTokenValidUntil = new Date(Date.now() + SIXTY_MINUTES);
+  const refreshTokenValidUntil = new Date(Date.now() + ONE_MONTH);
 
-    return {
-        accessToken,
-        refreshToken,
-        accessTokenValidUntil,
-        refreshTokenValidUntil,
-    };
+  return {
+    accessToken,
+    refreshToken,
+    accessTokenValidUntil,
+    refreshTokenValidUntil,
+  };
 };

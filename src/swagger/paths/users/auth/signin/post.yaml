@@ -1,8 +1,10 @@
 tags:
   - Auth
 summary: Sign in
-operationId: Sign in
+operationId: SignIn
 description: Sign in
+security:
+  - bearerAuth: []
 requestBody:
   content:
     application/json:
@@ -21,17 +23,16 @@ requestBody:
             type: string
             example: qweqwe123
 responses:
-  '200':
-    description: 'Successfully logged in'
+  "200":
+    description: "Successfully logged in"
     headers:
       Set-Cookie:
-        description: 'Session ID and Refresh Token cookies'
+        description: "Session ID and Refresh Token cookies"
         schema:
           type: string
           example: |
             sessionId=abc123xyz456; HttpOnly; Path=/; Secure; SameSite=Strict
             refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjM0NTY3ODkwMTIzNDU2NzgyMDM0NTY3ODkwMjM0NTY3ODkw; HttpOnly; Path=/; Secure; SameSite=Strict
-      content:
     content:
       application/json:
         schema:
@@ -46,7 +47,7 @@ responses:
               example: 200
             message:
               type: string
-              example: 'Successfully logged in'
+              example: "Successfully logged in"
             data:
               type: object
               properties:
@@ -54,14 +55,14 @@ responses:
                   type: string
                   description: "accessToken"
                   example: NauOmIu9Th39x6Uu5TsfEkZXl4+gdHeMg9CjHAh5
-  '404':
-    description: 'Not found'
+  "404":
+    description: "Not found"
     content:
       application/json:
         schema:
           $ref: "../../../../components/404.yaml"
-  '400':
-    description: 'Bad request'
+  "400":
+    description: "Bad request"
     content:
       application/json:
         schema:
