@@ -66,12 +66,12 @@ export const refreshUser = async (payload) => {
 
   if (!session) throw createHttpError(404, "User not found");
 
-  if (new Date() > session.accessTokenValidUntil)
+  if (new Date() > new Date(session.accessTokenValidUntil))
     throw new createHttpError(401, "Session expired");
 
-  await Sessions.deleteOne({ _id: session._id });
-
   const newSession = createSession();
+
+  await Sessions.deleteOne({ _id: session._id });
 
   return await Sessions.create({
     userId: session.userId,
