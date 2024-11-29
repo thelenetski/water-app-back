@@ -1,5 +1,5 @@
 import crypto from "node:crypto";
-import { ONE_MONTH, SIXTY_MINUTES } from "../constants";
+import { ONE_MONTH, SIXTY_MINUTES } from "../constants/index.js";
 
 export const createSession = () => {
   const accessToken = crypto.randomBytes(30).toString("base64");
