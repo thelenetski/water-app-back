@@ -69,7 +69,7 @@ export const refreshUser = async (payload) => {
 
   if (!session) throw createHttpError(404, "User not found");
 
-  if (new Date() > new Date(session.accessTokenValidUntil))
+  if (new Date() > new Date(session.refreshTokenValidUntil))
     throw new createHttpError(401, "Session expired");
 
   const newSession = createSession();

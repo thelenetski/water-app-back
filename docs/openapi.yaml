@@ -34,6 +34,14 @@ paths:
   /api/users:
      patch:
       $ref: ../src/swagger/paths/users/patch.yaml
+  /api/water:
+    post:
+      $ref: ../src/swagger/paths/water/post.yaml
+  /api/water/{id}:
+    patch:
+      $ref: ../src/swagger/paths/water/patch.yaml
+    delete:
+      $ref: ../src/swagger/paths/water/delete.yaml
 components:
   securitySchemes:
     bearerAuth:

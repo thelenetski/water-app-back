@@ -13,7 +13,7 @@ export const currentUserController = ctrlWrapper(async (req, res) => {
 });
 
 export const editUserController = ctrlWrapper(async (req, res) => {
-    let fileUrl
+    let fileUrl;
 
     if (req.file) {
         fileUrl = await saveFileToCloudinary(req.file);

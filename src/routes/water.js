@@ -24,7 +24,7 @@ router.patch(
 
 router.delete('/:id', ctrlWrapper(deleteWaterController));
 
-router.get('/today', ctrlWrapper(getWaterController));
+router.get('/day', ctrlWrapper(getWaterController));
 
 router.get('/month', ctrlWrapper(getWaterPerMonthController));
 

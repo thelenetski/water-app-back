@@ -1,0 +1,63 @@
+tags:
+  - Water
+summary: Get water by month
+operationId: getWaterByMonth
+description: 'Get water by month'
+security:
+  - bearerAuth: [ ]
+parameters:
+  - in: path
+    name: id
+    required: true
+    schema:
+      type: string
+      example: 65ca67e7ae7f10c88b598384
+responses:
+  '200':
+    description: 'Get contact by id'
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: 'Successfully found contact with id ${id}!'
+            data:
+              type: object
+              _id:
+                description: "Contact's id"
+                type: string
+                example: 65e4decdd286b30065d54af9
+              $ref: '../../../components/schemas/contact.yaml'
+              createdAt:
+                description: "Date when contact created"
+                type: string
+                example: 2024-05-08T16:12:14.954187
+              updatedAt:
+                description: "Date when contact updated"
+                type: string
+                example: 2024-05-08T16:12:14.954189
+  '404':
+    description: 'Contact not found'
+    content:
+      application/json:
+        properties:
+          data:
+            type: object
+            $ref: "../../../components/schemas/404.yaml"
+  '401':
+    description: 'Unauthorized'
+    content:
+      application/json:
+        properties:
+          data:
+            type: object
+            $ref: "../../../components/401.yaml"

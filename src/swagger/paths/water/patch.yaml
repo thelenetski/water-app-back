@@ -1,8 +1,8 @@
 tags:
   - Water
-summary: Create water
-operationId: Create water
-description: Create water
+summary: edit water
+operationId: editWater
+description: edit Water
 security:
   - bearerAuth: []
 requestBody:
@@ -12,12 +12,9 @@ requestBody:
         type: object
         properties:
           amount:
-            description: count of water user drank
-            type: number
+            type: integer
             example: 1500
-            default: 0
           date:
-            description: time when user drank, default new Date
             type: string
             example: 2024-11-29T11:57:39.080+00:00
 responses:
@@ -40,3 +37,29 @@ responses:
               example: Successfully created water
             data:
               $ref: "../../components/schemas/water.yaml"
+  "404":
+    description: "Water not found"
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 404
+            message:
+              description: Message about request
+              type: string
+              example: Water not found
+            data:
+              type: object
+              required:
+                - message
+              properties:
+                message:
+                  type: string
+                  example: 'Water not found'
