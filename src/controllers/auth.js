@@ -1,5 +1,5 @@
 import { ctrlWrapper } from "../utils/ctrlWrapper.js";
-import { logout, refreshUser, signin, signup } from "../services/auth.js";
+import {logout, refreshUser, resetPwd, sendResetPwd, signin, signup} from "../services/auth.js";
 import createHttpError from "http-errors";
 import { generateAuthUrl } from "../utils/googleOAuth2.js";
 import { loginOrSignupWithGoogle } from "../services/auth.js";
@@ -99,5 +99,29 @@ export const loginWithGoogleController = async (req, res) => {
     data: {
       accessToken: session.accessToken,
     },
+  });
+};
+
+export const sendResetPwdController = async (req,res) => {
+  const {email} = req.body;
+
+  await sendResetPwd({email: email});
+
+  res.status(200).send({
+    status: 200,
+    message: "Successfully send reset password on email",
+    data: {}
+  });
+};
+
+export const resetPwdController = async (req,res) => {
+  const {token, password} = req.body;
+
+  const user = await resetPwd({token, password});
+
+  res.status(200).send({
+    status: 200,
+    message: "Successfully reset!",
+    data: user
   });
 };

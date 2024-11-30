@@ -8,6 +8,9 @@ import {
   getFullNameFromGoogleTokenPayload,
   validateCode,
 } from "../utils/googleOAuth2.js";
+import {sendEmail} from "../utils/sendEmail.js";
+import jwt from "jsonwebtoken";
+import {env} from "../utils/env.js";
 
 export const signup = async (payload) => {
   const { email, password } = payload;
@@ -77,6 +80,44 @@ export const refreshUser = async (payload) => {
     userId: session.userId,
     ...newSession,
   });
+};
+
+export const sendResetPwd = async (payload) => {
+  const user = await Users.find({email: payload.email});
+
+  if(!user) throw createHttpError(401, "User not found");
+
+  const token = jwt.sign({sub: user._id, email: payload.email}, env('JWT_SECRET'), {expiresIn: "1h"});
+
+  try{
+    await sendEmail(payload.email, token);
+  } catch(err) {
+    throw createHttpError(500, {error: err.message, message: "Something went wrong"});
+  }
+};
+
+export const resetPwd = async (payload) => {
+  let decodedToken = null;
+
+  try {
+    decodedToken = jwt.verify(payload.token, env('JWT_SECRET'));
+  } catch (err) {
+    if(err === 'JsonWebTokenError') throw createHttpError(401, 'Invalid token');
+    if(err === 'TokenExpiredError') throw createHttpError(401, 'Token expired');
+
+    throw createHttpError(401, err);
+  }
+    const newPassword = await bcrypt.hash(payload.password, 10);
+
+  const user = await Users.findOneAndUpdate({_id: decodedToken.sub}, {password: newPassword});
+
+  if(!user){
+    throw createHttpError(401, "User not found");
+  }
+
+  await Sessions.deleteOne({ userId: decodedToken.sub });
+
+  return user;
 };
 
 /*-------------------GOOGLE AUTH--------------------*/

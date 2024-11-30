@@ -23,6 +23,10 @@ const signinSchema = Joi.object({
 });
 
 // Схема для скиду паролю
+const sendResetPasswordSchema = Joi.object({
+  email: Joi.string().email().required(),
+});
+
 const resetPasswordSchema = Joi.object({
   token: Joi.string().required(), // Токен для скиду паролю (отриманий через email)
   password: Joi.string().min(6).required(), // Новий пароль
@@ -37,4 +41,5 @@ export {
   signinSchema,
   resetPasswordSchema,
   loginWithGoogleOAuthSchema,
+  sendResetPasswordSchema
 };

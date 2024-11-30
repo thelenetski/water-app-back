@@ -9,10 +9,10 @@ import {errorHander} from "./middlewares/errorHandler.js";
 import {swaggerDocument} from "./constants/index.js";
 import swaggerUi from 'swagger-ui-express';
 import authRouter from "./routes/auth/auth.js";
-import router from "./routes/users.js";
+import {env} from "./utils/env.js";
 
 const setupServer = () => {
-    const PORT = process.env.PORT || 3000;
+    const PORT = env("PORT") || 3000;
     const app = express();
 
     app.use(cors());
