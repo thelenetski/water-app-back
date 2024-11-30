@@ -15,7 +15,12 @@ const setupServer = () => {
     const PORT = env("PORT") || 3000;
     const app = express();
 
-    app.use(cors());
+    app.use(cors(
+        {
+            origin: env("HOST"),
+            credentials: true,
+        }
+    ));
 
     app.use(
         pino({

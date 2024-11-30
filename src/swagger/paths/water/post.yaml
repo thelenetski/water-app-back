@@ -1,0 +1,21 @@
+tags:
+  - Water
+summary: Create water
+operationId: Create water
+description: Create water
+security:
+  - bearerAuth: []
+requestBody:
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          amount:
+            description: count of water user drank
+            type: number
+            example: 1500
+          date:
+            description: time when user drank, default new Date
+            type: string
+            example: 2024-11-29T11:57:39.080+00:00

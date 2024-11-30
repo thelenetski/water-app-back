@@ -1,0 +1,27 @@
+type: object
+required:
+  - _id
+  - amount
+  - userId
+  - date
+  - createdAt
+  - updatedAt
+properties:
+  _id:
+    type: string
+    example: 674245a0c5604835d8faa4fb
+  amount:
+    type: number
+    example: 1500
+  userId:
+    type: string
+    example: 674245a0c5604835d8faa4fb
+  data:
+    type: string
+    example: 2024-11-29T11:57:39.080+00:00
+  createdAt:
+    type: string
+    example: 2024-11-29T11:58:09.224+00:00
+  updatedAt:
+    type: string
+    example: 2024-11-29T11:58:09.224+00:00

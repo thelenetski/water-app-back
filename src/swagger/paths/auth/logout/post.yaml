@@ -25,4 +25,4 @@ responses:
     content:
       application/json:
         schema:
-          $ref: "../../../../components/404.yaml"
+          $ref: "../../../components/404.yaml"

@@ -49,10 +49,10 @@ responses:
     content:
       application/json:
         schema:
-          $ref: "../../../../components/400.yaml"
+          $ref: "../../../components/400.yaml"
   "409":
     description: "Conflict"
     content:
       application/json:
         schema:
-          $ref: "../../../../components/409.yaml"
+          $ref: "../../../components/409.yaml"

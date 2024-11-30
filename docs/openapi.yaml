@@ -18,16 +18,16 @@ servers:
 paths:
   /api/auth/signup:
     post:
-      $ref: ../src/swagger/paths/users/auth/signup/post.yaml
+      $ref: ../src/swagger/paths/auth/signup/post.yaml
   /api/auth/signin:
     post:
-      $ref: ../src/swagger/paths/users/auth/signin/post.yaml
+      $ref: ../src/swagger/paths/auth/signin/post.yaml
   /api/auth/refresh:
     post:
-      $ref: ../src/swagger/paths/users/auth/refresh/post.yaml
+      $ref: ../src/swagger/paths/auth/refresh/post.yaml
   /api/auth/logout:
     post:
-      $ref: ../src/swagger/paths/users/auth/logout/post.yaml
+      $ref: ../src/swagger/paths/auth/logout/post.yaml
   /api/users/current:
     get:
       $ref: ../src/swagger/paths/users/get.yaml
