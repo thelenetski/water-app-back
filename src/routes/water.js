@@ -17,12 +17,12 @@ router.use(authenticate);
 router.post('/', validateBody(waterSchema), ctrlWrapper(addWaterController));
 
 router.patch(
-  '/',
+  '/:id',
   validateBody(editWaterSchema),
   ctrlWrapper(editWaterController),
 );
 
-router.delete('/', ctrlWrapper(deleteWaterController));
+router.delete('/:id', ctrlWrapper(deleteWaterController));
 
 router.get('/today', ctrlWrapper(getWaterController));
 

@@ -25,9 +25,11 @@
     }
   ],
   "paths": {
-    "/api/users/auth/signup": {
+    "/api/auth/signup": {
       "post": {
-        "tags": ["Auth"],
+        "tags": [
+          "Auth"
+        ],
         "summary": "Sign up",
         "operationId": "SignUp",
         "description": "Sign up",
@@ -41,7 +43,11 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["email", "password", "repeatPassword"],
+                "required": [
+                  "email",
+                  "password",
+                  "repeatPassword"
+                ],
                 "properties": {
                   "email": {
                     "description": "User email",
@@ -70,7 +76,10 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "required": ["status", "message"],
+                  "required": [
+                    "status",
+                    "message"
+                  ],
                   "properties": {
                     "status": {
                       "type": "integer",
@@ -108,9 +117,11 @@
         }
       }
     },
-    "/api/users/auth/signin": {
+    "/api/auth/signin": {
       "post": {
-        "tags": ["Auth"],
+        "tags": [
+          "Auth"
+        ],
         "summary": "Sign in",
         "operationId": "SignIn",
         "description": "Sign in",
@@ -124,7 +135,10 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["email", "password"],
+                "required": [
+                  "email",
+                  "password"
+                ],
                 "properties": {
                   "email": {
                     "description": "User email",
@@ -157,7 +171,11 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "required": ["status", "message", "data"],
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ],
                   "properties": {
                     "status": {
                       "type": "integer",
@@ -205,9 +223,11 @@
         }
       }
     },
-    "/api/users/auth/refresh": {
+    "/api/auth/refresh": {
       "post": {
-        "tags": ["Auth"],
+        "tags": [
+          "Auth"
+        ],
         "summary": "Refresh token",
         "operationId": "RefreshToken",
         "description": "Refresh the session token and refresh token.",
@@ -232,7 +252,11 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "required": ["status", "message", "data"],
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ],
                   "properties": {
                     "status": {
                       "type": "integer",
@@ -280,9 +304,11 @@
         }
       }
     },
-    "/api/users/auth/logout": {
+    "/api/auth/logout": {
       "post": {
-        "tags": ["Auth"],
+        "tags": [
+          "Auth"
+        ],
         "summary": "Logout",
         "operationId": "Logout",
         "description": "Logout",
@@ -326,7 +352,9 @@
     },
     "/api/users/current": {
       "get": {
-        "tags": ["Users"],
+        "tags": [
+          "Users"
+        ],
         "summary": "get current user",
         "operationId": "getCurrentUser",
         "description": "get current user",
@@ -342,7 +370,11 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "required": ["status", "message", "data"],
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ],
                   "properties": {
                     "status": {
                       "type": "integer",
@@ -381,7 +413,9 @@
     },
     "/api/users": {
       "patch": {
-        "tags": ["Users"],
+        "tags": [
+          "Users"
+        ],
         "summary": "edit User",
         "operationId": "editUser",
         "description": "edit User",
@@ -404,7 +438,10 @@
                   "gender": {
                     "description": "User gender",
                     "type": "string",
-                    "enum": ["male", "female"]
+                    "enum": [
+                      "male",
+                      "female"
+                    ]
                   },
                   "weight": {
                     "description": "User weight",
@@ -438,7 +475,11 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "required": ["status", "message", "data"],
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ],
                   "properties": {
                     "status": {
                       "type": "integer",
@@ -476,7 +517,11 @@
     "schemas": {
       "400": {
         "type": "object",
-        "required": ["status", "message", "data"],
+        "required": [
+          "status",
+          "message",
+          "data"
+        ],
         "properties": {
           "status": {
             "type": "integer",
@@ -489,7 +534,9 @@
           },
           "data": {
             "type": "object",
-            "required": ["message"],
+            "required": [
+              "message"
+            ],
             "properties": {
               "message": {
                 "type": "string",
@@ -501,7 +548,11 @@
       },
       "401": {
         "type": "object",
-        "required": ["status", "message", "data"],
+        "required": [
+          "status",
+          "message",
+          "data"
+        ],
         "properties": {
           "status": {
             "type": "integer",
@@ -514,7 +565,9 @@
           },
           "data": {
             "type": "object",
-            "required": ["message"],
+            "required": [
+              "message"
+            ],
             "properties": {
               "message": {
                 "type": "string",
@@ -526,7 +579,11 @@
       },
       "404": {
         "type": "object",
-        "required": ["status", "message", "data"],
+        "required": [
+          "status",
+          "message",
+          "data"
+        ],
         "properties": {
           "status": {
             "type": "integer",
@@ -539,7 +596,9 @@
           },
           "data": {
             "type": "object",
-            "required": ["message"],
+            "required": [
+              "message"
+            ],
             "properties": {
               "message": {
                 "type": "string",
@@ -551,7 +610,11 @@
       },
       "409": {
         "type": "object",
-        "required": ["status", "message", "data"],
+        "required": [
+          "status",
+          "message",
+          "data"
+        ],
         "properties": {
           "status": {
             "type": "integer",
@@ -564,7 +627,9 @@
           },
           "data": {
             "type": "object",
-            "required": ["message"],
+            "required": [
+              "message"
+            ],
             "properties": {
               "message": {
                 "type": "string",

@@ -1,5 +1,4 @@
 import { Router } from 'express';
-import authRouter from './auth/auth.js';
 import { editUserController } from '../controllers/users.js';
 import { upload } from '../middlewares/multers.js';
 import { currentUserController } from '../controllers/users.js';
@@ -9,7 +8,6 @@ import {userSchema} from "../schemas/users.js";
 const router = new Router();
 import {validateBody} from "../middlewares/validateBody.js";
 
-router.use('/auth', authRouter);
 router.use(authenticate);
 router.get('/current', ctrlWrapper(currentUserController));
 router.patch(

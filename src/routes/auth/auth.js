@@ -26,12 +26,14 @@ router.post(
 
 router.post("/signin", validateBody(signinSchema), signInController);
 
-router.use(authenticate);
-router.post("/logout", ctrlWrapper(logoutController));
-
 router.post("/refresh", ctrlWrapper(refreshUserController));
 
 router.get("/get-oauth-url", ctrlWrapper(getGoogleOAuthUrlController));
+
+router.use(authenticate);
+
+router.post("/logout", ctrlWrapper(logoutController));
+
 
 router.post(
   "/confirm-oauth",

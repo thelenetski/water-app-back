@@ -16,16 +16,16 @@ servers:
   # - url: http://localhost:3000
   - url: https://water-app-back-1n3p.onrender.com
 paths:
-  /api/users/auth/signup:
+  /api/auth/signup:
     post:
       $ref: ../src/swagger/paths/users/auth/signup/post.yaml
-  /api/users/auth/signin:
+  /api/auth/signin:
     post:
       $ref: ../src/swagger/paths/users/auth/signin/post.yaml
-  /api/users/auth/refresh:
+  /api/auth/refresh:
     post:
       $ref: ../src/swagger/paths/users/auth/refresh/post.yaml
-  /api/users/auth/logout:
+  /api/auth/logout:
     post:
       $ref: ../src/swagger/paths/users/auth/logout/post.yaml
   /api/users/current:

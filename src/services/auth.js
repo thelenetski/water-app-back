@@ -60,9 +60,9 @@ export const getCurrentUser = async (payload) => {
 };
 
 export const refreshUser = async (payload) => {
-  const { _id } = payload;
+  const { sessionId } = payload;
 
-  const session = await Sessions.findOne({ userId: _id });
+  const session = await Sessions.findOne({ _id: sessionId });
 
   if (!session) throw createHttpError(404, "User not found");
 
