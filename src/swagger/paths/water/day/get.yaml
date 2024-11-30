@@ -1,0 +1,49 @@
+tags:
+  - Water
+summary: Get water by day
+operationId: getWaterByDay
+description: 'Get water by day'
+security:
+  - bearerAuth: [ ]
+parameters:
+  - in: query
+    name: year
+    required: true
+    schema:
+      type: integer
+      example: 2024
+  - in: query
+    name: month
+    required: true
+    schema:
+      type: integer
+      example: 11
+  - in: query
+    name: day
+    required: true
+    schema:
+      type: integer
+      example: 24
+responses:
+  '200':
+    description: 'Get water by day'
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: 'Successfully get water by day!'
+            data:
+              type: array
+              items:
+                type: object
+                $ref: "../../../components/schemas/water.yaml"

@@ -6,15 +6,21 @@ description: 'Get water by month'
 security:
   - bearerAuth: [ ]
 parameters:
-  - in: path
-    name: id
+  - in: query
+    name: year
     required: true
     schema:
-      type: string
-      example: 65ca67e7ae7f10c88b598384
+      type: integer
+      example: 2024
+  - in: query
+    name: month
+    required: true
+    schema:
+      type: integer
+      example: 11
 responses:
   '200':
-    description: 'Get contact by id'
+    description: 'Get water by month'
     content:
       application/json:
         schema:
@@ -29,35 +35,9 @@ responses:
               example: 200
             message:
               type: string
-              example: 'Successfully found contact with id ${id}!'
+              example: 'Successfully get water by month!'
             data:
-              type: object
-              _id:
-                description: "Contact's id"
-                type: string
-                example: 65e4decdd286b30065d54af9
-              $ref: '../../../components/schemas/contact.yaml'
-              createdAt:
-                description: "Date when contact created"
-                type: string
-                example: 2024-05-08T16:12:14.954187
-              updatedAt:
-                description: "Date when contact updated"
-                type: string
-                example: 2024-05-08T16:12:14.954189
-  '404':
-    description: 'Contact not found'
-    content:
-      application/json:
-        properties:
-          data:
-            type: object
-            $ref: "../../../components/schemas/404.yaml"
-  '401':
-    description: 'Unauthorized'
-    content:
-      application/json:
-        properties:
-          data:
-            type: object
-            $ref: "../../../components/401.yaml"
+              type: array
+              items:
+                type: object
+                $ref: "../../../components/schemas/water.yaml"

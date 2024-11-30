@@ -13,8 +13,8 @@ tags:
   - name: Auth
     description: Auth operations.
 servers:
-  # - url: http://localhost:3000
-  - url: https://water-app-back-1n3p.onrender.com
+   - url: http://localhost:3000
+   - url: https://water-app-back-1n3p.onrender.com
 paths:
   /api/auth/signup:
     post:
@@ -42,6 +42,12 @@ paths:
       $ref: ../src/swagger/paths/water/patch.yaml
     delete:
       $ref: ../src/swagger/paths/water/delete.yaml
+  /api/water/month:
+    get:
+      $ref: ../src/swagger/paths/water/month/get.yaml
+  /api/water/day:
+    get:
+      $ref: ../src/swagger/paths/water/day/get.yaml
 components:
   securitySchemes:
     bearerAuth:
