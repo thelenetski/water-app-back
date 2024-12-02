@@ -17,7 +17,7 @@ export const editWater = async (payload) => {
 };
 
 export const deleteWater = async (payload) => {
-    const water = await Water.deleteOne({_id: payload});
+    const water = await Water.findOneAndDelete({_id: payload});
 
     if(!water) throw createHttpError(404, 'Water not found');
 
