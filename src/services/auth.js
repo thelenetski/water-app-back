@@ -8,9 +8,9 @@ import {
   getFullNameFromGoogleTokenPayload,
   validateCode,
 } from "../utils/googleOAuth2.js";
-import {sendEmail} from "../utils/sendEmail.js";
+import { sendEmail } from "../utils/sendEmail.js";
 import jwt from "jsonwebtoken";
-import {env} from "../utils/env.js";
+import { env } from "../utils/env.js";
 
 export const signup = async (payload) => {
   const { email, password } = payload;
@@ -63,18 +63,18 @@ export const getCurrentUser = async (payload) => {
 };
 
 export const refreshUser = async (payload) => {
-  const { sessionId } = payload;
+  const { sessionId, refreshToken } = payload;
 
-  const session = await Sessions.findOne({ _id: sessionId });
+  const session = await Sessions.findOne({ _id: sessionId, refreshToken });
 
   if (!session) throw createHttpError(404, "User not found");
 
   if (new Date() > new Date(session.refreshTokenValidUntil))
-    throw new createHttpError(401, "Session expired");
+    throw createHttpError(401, "Session expired");
 
   const newSession = createSession();
 
-  await Sessions.deleteOne({ _id: session._id });
+  await Sessions.deleteOne({ _id: sessionId, refreshToken });
 
   return await Sessions.create({
     userId: session.userId,
@@ -83,16 +83,23 @@ export const refreshUser = async (payload) => {
 };
 
 export const sendResetPwd = async (payload) => {
-  const user = await Users.find({email: payload.email});
+  const user = await Users.find({ email: payload.email });
 
-  if(!user) throw createHttpError(401, "User not found");
+  if (!user) throw createHttpError(401, "User not found");
 
-  const token = jwt.sign({sub: user._id, email: payload.email}, env('JWT_SECRET'), {expiresIn: "1h"});
+  const token = jwt.sign(
+    { sub: user._id, email: payload.email },
+    env("JWT_SECRET"),
+    { expiresIn: "1h" },
+  );
 
-  try{
+  try {
     await sendEmail(payload.email, token);
-  } catch(err) {
-    throw createHttpError(500, {error: err.message, message: "Something went wrong"});
+  } catch (err) {
+    throw createHttpError(500, {
+      error: err.message,
+      message: "Something went wrong",
+    });
   }
 };
 
@@ -100,18 +107,23 @@ export const resetPwd = async (payload) => {
   let decodedToken = null;
 
   try {
-    decodedToken = jwt.verify(payload.token, env('JWT_SECRET'));
+    decodedToken = jwt.verify(payload.token, env("JWT_SECRET"));
   } catch (err) {
-    if(err === 'JsonWebTokenError') throw createHttpError(401, 'Invalid token');
-    if(err === 'TokenExpiredError') throw createHttpError(401, 'Token expired');
+    if (err === "JsonWebTokenError")
+      throw createHttpError(401, "Invalid token");
+    if (err === "TokenExpiredError")
+      throw createHttpError(401, "Token expired");
 
     throw createHttpError(401, err);
   }
-    const newPassword = await bcrypt.hash(payload.password, 10);
+  const newPassword = await bcrypt.hash(payload.password, 10);
 
-  const user = await Users.findOneAndUpdate({_id: decodedToken.sub}, {password: newPassword});
+  const user = await Users.findOneAndUpdate(
+    { _id: decodedToken.sub },
+    { password: newPassword },
+  );
 
-  if(!user){
+  if (!user) {
     throw createHttpError(401, "User not found");
   }
 
