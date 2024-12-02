@@ -6,13 +6,16 @@ import { loginOrSignupWithGoogle } from "../services/auth.js";
 import { ONE_MONTH } from "../constants/index.js";
 
 export const signUpController = ctrlWrapper(async (req, res) => {
-  const user = await signup(req.body);
+  const session = await signup(req.body);
 
-  if (!user) throw createHttpError(400, "Bad request");
+  if (!session) throw createHttpError(400, "Bad request");
 
   res.status(201).send({
     status: 201,
     message: "Successfully created user",
+    data: {
+      accessToken: session.accessToken,
+    },
   });
 });
 

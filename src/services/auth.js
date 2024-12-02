@@ -21,7 +21,11 @@ export const signup = async (payload) => {
 
   const encryptedPassword = await bcrypt.hash(password, 10);
 
-  return await Users.create({ email: email, password: encryptedPassword });
+  const user = await Users.create({ email: email, password: encryptedPassword });
+
+  const session = createSession();
+
+  return Sessions.create({ userId: user._id, ...session });
 };
 
 export const signin = async (payload) => {

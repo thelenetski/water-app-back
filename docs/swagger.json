@@ -91,6 +91,16 @@
                     "message": {
                       "type": "string",
                       "example": "Successfully created Users"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "accessToken": {
+                          "type": "string",
+                          "description": "accessToken",
+                          "example": "NauOmIu9Th39x6Uu5TsfEkZXl4+gdHeMg9CjHAh5"
+                        }
+                      }
                     }
                   }
                 }
