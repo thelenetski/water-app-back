@@ -29,7 +29,7 @@ export const getWaterByDay = async (payload) => {
     const endDate = new Date(startDate);
     endDate.setDate(endDate.getDate() + 1);
 
-    return Water.find({userId: payload._id, createdAt: {
+    return Water.find({userId: payload._id, date: {
             $gte: startDate,
             $lt: endDate,
         }});
