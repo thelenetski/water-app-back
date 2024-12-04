@@ -39,7 +39,7 @@ export const getWaterByMonth = async (payload) => {
     const startDate = new Date(payload.year, payload.month - 1, 1);
     const endDate = new Date(payload.year, payload.month, 1);
 
-    return Water.find({userId: payload._id, createdAt: {
+    return Water.find({userId: payload._id, date: {
             $gte: startDate,
             $lt: endDate,
         }});
