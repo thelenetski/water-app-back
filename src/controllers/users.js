@@ -1,18 +1,18 @@
 import {ctrlWrapper} from '../utils/ctrlWrapper.js';
 import {getCurrentUser} from "../services/auth.js";
-import {editUser} from "../services/users.js";
+import {editUser, getAllUsers} from "../services/users.js";
 import {saveFileToCloudinary} from "../utils/saveFileToCloudinary.js";
 
-export const currentUserController = ctrlWrapper(async (req, res) => {
+export const currentUserController = async (req, res) => {
     const user = await getCurrentUser(req.user);
 
     res.status(200).send({
         status: 200,
         data: user
     });
-});
+};
 
-export const editUserController = ctrlWrapper(async (req, res) => {
+export const editUserController = async (req, res) => {
     let fileUrl;
 
     if (req.file) {
@@ -24,4 +24,14 @@ export const editUserController = ctrlWrapper(async (req, res) => {
         status: 200,
         data: user
     });
-});
+};
+
+export const getAllUsersController = async (req,res) => {
+    const {users, count} = await getAllUsers()
+
+    res.status(200).send({
+        status: 200,
+        data: users,
+        countOfUsers: count
+    })
+}

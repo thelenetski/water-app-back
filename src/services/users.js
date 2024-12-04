@@ -6,3 +6,9 @@ export const editUser = async ({id, payload}) => {
         includeResultMetadata: false,
     });
 };
+
+export const getAllUsers = async () => {
+    const [users, count] = await Promise.all([Users.find({}), Users.countDocuments({})])
+    
+    return {users: users.map(item => item.avatarUrl).filter(item => item !== null), count}
+}
