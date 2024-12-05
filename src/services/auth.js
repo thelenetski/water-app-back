@@ -21,7 +21,10 @@ export const signup = async (payload) => {
 
   const encryptedPassword = await bcrypt.hash(password, 10);
 
-  const user = await Users.create({ email: email, password: encryptedPassword });
+  const user = await Users.create({
+    email: email,
+    password: encryptedPassword,
+  });
 
   const session = createSession();
 
@@ -149,7 +152,6 @@ export const loginOrSignupWithGoogle = async (code) => {
       email: payload.email,
       name: getFullNameFromGoogleTokenPayload(payload),
       password,
-      role: "parent",
     });
   }
 
