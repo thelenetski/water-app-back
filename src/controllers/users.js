@@ -27,11 +27,11 @@ export const editUserController = async (req, res) => {
 };
 
 export const getAllUsersController = async (req,res) => {
-    const {users, count} = await getAllUsers()
+    const {users, count} = await getAllUsers();
 
     res.status(200).send({
         status: 200,
         data: users,
         countOfUsers: count
-    })
-}
+    });
+};

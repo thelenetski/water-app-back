@@ -915,6 +915,60 @@
           }
         }
       }
+    },
+    "/api/users/allUsers": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "get all Users",
+        "operationId": "getAllUsers",
+        "description": "get all users",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "status",
+                    "message",
+                    "data",
+                    "countOfDocuments"
+                  ],
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "example": [
+                          "https://res.cloudinary.com/dwwbuktym/image/upload/v1733345187/y5x48ijv…",
+                          "https://res.cloudinary.com/dwwbuktym/image/upload/v1733345187/y5x48ijv…",
+                          "https://res.cloudinary.com/dwwbuktym/image/upload/v1733345187/y5x48ijv…"
+                        ]
+                      }
+                    },
+                    "countOfDocuments": {
+                      "type": "integer",
+                      "example": 36
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {

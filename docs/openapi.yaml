@@ -48,6 +48,9 @@ paths:
   /api/water/day:
     get:
       $ref: ../src/swagger/paths/water/day/get.yaml
+  /api/users/allUsers:
+    get:
+      $ref: ../src/swagger//paths/users/allUsers/get.yaml
 components:
   securitySchemes:
     bearerAuth:
