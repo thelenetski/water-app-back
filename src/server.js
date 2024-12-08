@@ -20,16 +20,7 @@ const setupServer = () => {
       "https://imaginative-figolla-2b5fbf.netlify.app",
     ];
     
-    app.use(cors({
-    origin: (origin, callback) => {
-      if (allowedOrigins.includes(origin) || !origin) {
-        callback(null, true); // Разрешаем запросы с указанных источников
-      } else {
-        callback(new Error("Not allowed by CORS")); // Отклоняем запросы с других источников
-      }
-    },
-    credentials: true, // Разрешаем отправку cookies
-  }));
+    app.use(cors());
 
     app.use(
         pino({
