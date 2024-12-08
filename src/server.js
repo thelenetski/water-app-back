@@ -15,14 +15,21 @@ const setupServer = () => {
     const PORT = env("PORT") || 3000;
     const app = express();
 
-    app.use(cors());
+    const allowedOrigins = [
+      "http://localhost:5173",  // Локальный источник
+      "https://imaginative-figolla-2b5fbf.netlify.app",
+    ];
     
-    // app.use(cors(
-    //     {
-    //         origin: env("HOST"),
-    //         credentials: true,
-    //     }
-    // ));
+    app.use(cors({
+    origin: (origin, callback) => {
+      if (allowedOrigins.includes(origin) || !origin) {
+        callback(null, true); // Разрешаем запросы с указанных источников
+      } else {
+        callback(new Error("Not allowed by CORS")); // Отклоняем запросы с других источников
+      }
+    },
+    credentials: true, // Разрешаем отправку cookies
+  }));
 
     app.use(
         pino({
