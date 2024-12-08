@@ -51,6 +51,7 @@ export const logoutController = ctrlWrapper(async (req, res) => {
 });
 
 export const refreshUserController = ctrlWrapper(async (req, res) => {
+  console.log(req);
   const session = await refreshUser(req.cookies);
 
   res.cookie("sessionId", session._id, {
