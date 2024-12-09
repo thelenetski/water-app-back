@@ -20,7 +20,10 @@ const setupServer = () => {
       "https://imaginative-figolla-2b5fbf.netlify.app",
     ];
     
-    app.use(cors());
+    app.use(cors({
+      origin: allowedOrigins,
+      credentials: true,
+    }));
 
     app.use(
         pino({
