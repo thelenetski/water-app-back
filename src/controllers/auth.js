@@ -1,5 +1,12 @@
 import { ctrlWrapper } from "../utils/ctrlWrapper.js";
-import {logout, refreshUser, resetPwd, sendResetPwd, signin, signup} from "../services/auth.js";
+import {
+  logout,
+  refreshUser,
+  resetPwd,
+  sendResetPwd,
+  signin,
+  signup,
+} from "../services/auth.js";
 import createHttpError from "http-errors";
 import { generateAuthUrl } from "../utils/googleOAuth2.js";
 import { loginOrSignupWithGoogle } from "../services/auth.js";
@@ -21,6 +28,8 @@ export const signUpController = ctrlWrapper(async (req, res) => {
 
 export const signInController = ctrlWrapper(async (req, res) => {
   const session = await signin(req.body);
+
+  console.log("******************LOGIN****************************", session);
 
   res.cookie("sessionId", session._id, {
     httpOnly: true,
@@ -51,7 +60,7 @@ export const logoutController = ctrlWrapper(async (req, res) => {
 });
 
 export const refreshUserController = ctrlWrapper(async (req, res) => {
-  console.log('***************REFRESH********************', req.cookies);
+  console.log("***************REFRESH********************", req.cookies);
   const session = await refreshUser(req.cookies);
 
   res.cookie("sessionId", session._id, {
@@ -106,26 +115,26 @@ export const loginWithGoogleController = async (req, res) => {
   });
 };
 
-export const sendResetPwdController = async (req,res) => {
-  const {email} = req.body;
+export const sendResetPwdController = async (req, res) => {
+  const { email } = req.body;
 
-  await sendResetPwd({email: email});
+  await sendResetPwd({ email: email });
 
   res.status(200).send({
     status: 200,
     message: "Successfully send reset password on email",
-    data: {}
+    data: {},
   });
 };
 
-export const resetPwdController = async (req,res) => {
-  const {token, password} = req.body;
+export const resetPwdController = async (req, res) => {
+  const { token, password } = req.body;
 
-  const user = await resetPwd({token, password});
+  const user = await resetPwd({ token, password });
 
   res.status(200).send({
     status: 200,
     message: "Successfully reset!",
-    data: user
+    data: user,
   });
 };
