@@ -29,8 +29,6 @@ export const signUpController = ctrlWrapper(async (req, res) => {
 export const signInController = ctrlWrapper(async (req, res) => {
   const session = await signin(req.body);
 
-  console.log("******************LOGIN****************************", session);
-
   res.cookie("sessionId", session._id, {
     httpOnly: true,
     expires: new Date(Date.now() + 15 * 60 * 1000),
@@ -70,7 +68,7 @@ export const refreshUserController = ctrlWrapper(async (req, res) => {
 
   res.cookie("refreshToken", session.refreshToken, {
     httpOnly: true,
-    expires: new Date(Date.now() + 15 * 60 * 1000),
+    expires: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
   });
 
   res.status(200).send({

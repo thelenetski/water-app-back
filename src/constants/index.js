@@ -8,6 +8,6 @@ const swaggerDocument = fs.readFileSync(
 );
 
 const ONE_MONTH = 30 * 24 * 60 * 60 * 1000;
-const SIXTY_MINUTES = 60 * 60 * 1000;
+const SIXTY_MINUTES = 2 * 60 * 1000;
 
 export { TMP_UPLOAD_DIR, swaggerDocument, ONE_MONTH, SIXTY_MINUTES };
