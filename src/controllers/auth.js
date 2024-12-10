@@ -31,14 +31,14 @@ export const signInController = ctrlWrapper(async (req, res) => {
 
   res.cookie("sessionId", session._id, {
     httpOnly: true,
-    expires: new Date(Date.now() + 15 * 60 * 1000),
+    expires: new Date(Date.now() + ONE_MONTH),
     sameSite: "None", // Для кросс-доменных запросов
     secure: true,
   });
 
   res.cookie("refreshToken", session.refreshToken, {
     httpOnly: true,
-    expires: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
+    expires: new Date(Date.now() + ONE_MONTH),
     sameSite: "None", // Для кросс-доменных запросов
     secure: true,
   });
@@ -66,14 +66,14 @@ export const refreshUserController = ctrlWrapper(async (req, res) => {
 
   res.cookie("sessionId", session._id, {
     httpOnly: true,
-    expires: new Date(Date.now() + 15 * 60 * 1000),
+    expires: new Date(Date.now() + ONE_MONTH),
     sameSite: "None", // Для кросс-доменных запросов
     secure: true,
   });
 
   res.cookie("refreshToken", session.refreshToken, {
     httpOnly: true,
-    expires: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
+    expires: new Date(Date.now() + ONE_MONTH),
     sameSite: "None", // Для кросс-доменных запросов
     secure: true,
   });
