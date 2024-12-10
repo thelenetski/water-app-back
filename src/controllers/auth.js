@@ -55,22 +55,14 @@ export const signInController = ctrlWrapper(async (req, res) => {
 export const logoutController = ctrlWrapper(async (req, res) => {
   await logout(req.user);
 
-  res.clearCookie(
-    "refreshToken",
-    {},
-    {
-      sameSite: "None", // Для кросс-доменных запросов
-      secure: true,
-    },
-  );
-  res.clearCookie(
-    "sessionId",
-    {},
-    {
-      sameSite: "None", // Для кросс-доменных запросов
-      secure: true,
-    },
-  );
+  res.clearCookie("refreshToken", {
+    sameSite: "None", // Для кросс-доменных запросов
+    secure: true,
+  });
+  res.clearCookie("sessionId", {
+    sameSite: "None", // Для кросс-доменных запросов
+    secure: true,
+  });
 
   res.status(204).send({});
 });
